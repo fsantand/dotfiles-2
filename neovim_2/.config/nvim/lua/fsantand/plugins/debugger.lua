@@ -100,6 +100,44 @@ return {
 			}
 		}
 
+		dap.configurations.typescript = {
+			{
+				type = "pwa-node",
+				request = "launch",
+				name = "Launch file",
+				program = "${file}",
+				cwd = "${workspaceFolder}",
+			},
+			{
+				type = "pwa-node",
+				request = "attach",
+				name = "Attach",
+				skipFiles = {
+					"${workspaceFolder}/node_modules/**/*.js",
+					"${workspaceFolder}/node_modules/**/*.ts",
+				},
+				processId = require 'dap.utils'.pick_process,
+				cwd = "${workspaceFolder}",
+			},
+			{
+				type = "pwa-node",
+				request = "launch",
+				name = "Debug Mocha Tests",
+				-- runtimeExecutable = "node",
+				runtimeArgs = {
+					"./node_modules/mocha/bin/mocha.js",
+					"-u",
+					"bdd",
+					"--timeout",
+					"999999",
+				},
+				rootPath = "${workspaceFolder}",
+				cwd = "${workspaceFolder}",
+				console = "integratedTerminal",
+				internalConsoleOptions = "neverOpen",
+				envFile = "${workspaceFolder}/env/test/.${workspaceFolderBasename}.env",
+			}
+		}
 		-- Install golang specific config
 		require('dap-go').setup()
 	end,
