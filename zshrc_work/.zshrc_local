@@ -1,0 +1,6 @@
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="${HOME}/.pyenv/shims:${PATH}"
+
+alias devToStg="gh pr create -H develop -B staging -t \"Dev to Stg\" -b \"Dev to Stg\""
+alias stgToMaster="gh pr create -H staging -B master -t \"Stg to Master\" -b \"Stg to Master\""

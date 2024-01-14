@@ -1,0 +1,5 @@
+alias gpp='git rev-parse --abbrev-ref HEAD | xargs git push --force-with-lease origin '
+alias config='git --git-dir=$HOME/.cfg --work-tree=$HOME'
+alias lls="exa -la"
+alias fuckcorsair="amixer set -c Gamin Headset,0 mute"
+alias corne_edit="./checkhidraw.sh | grep Corne | awk '//{printf \"/dev/%s\n\", \$1}' | xargs sudo chmod a+rw"
