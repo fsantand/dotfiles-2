@@ -64,6 +64,7 @@ require('lazy').setup({
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       'L3MON4D3/LuaSnip',
@@ -118,6 +119,7 @@ require('lazy').setup({
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
+    cmd = 'Telescope',
     dependencies = {
       'nvim-lua/plenary.nvim',
       {
@@ -540,6 +542,7 @@ cmp.setup({
   }),
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'buffer' },
     { name = 'luasnip' },
     { name = 'path' },
   }
