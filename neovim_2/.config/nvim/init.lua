@@ -334,6 +334,7 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move to prev half page' })
 vim.keymap.set('n', '<leader>vd', open_float, { desc = 'Open diagnostic' })
 vim.keymap.set('n', ']d', goto_next_diag, { desc = 'Diagnostics: Go to next' })
 vim.keymap.set('n', '[d', goto_prev_diag, { desc = 'Diagnostics: Go to previous' })
+vim.keymap.set('n', '<leader>q', ':TroubleToggle<CR>', { desc = 'Diagnostics: Open QF' })
 
 -- [[ Oil ]]
 vim.keymap.set('n', '-', ':Oil<CR>', { desc = 'Open file directory' })
