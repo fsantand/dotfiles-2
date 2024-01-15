@@ -36,6 +36,13 @@ require('lazy').setup({
     opts = {},
   },
   {
+    'folke/trouble.nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons'
+    },
+    opts = {},
+  },
+  {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -306,8 +313,27 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+local open_float = function()
+  return vim.diagnostic.open_float({ border = 'rounded' })
+end
+
+local goto_next_diag = function()
+  return vim.diagnostic.goto_next({ border = 'rounded' })
+end
+
+local goto_prev_diag = function()
+  return vim.diagnostic.goto_prev({ border = 'rounded' })
+end
+
 -- [[ Default ]]
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move to next half page' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move to prev half page' })
+
+-- [[ Diagnostics ]]
+vim.keymap.set('n', '<leader>vd', open_float, { desc = 'Open diagnostic' })
+vim.keymap.set('n', ']d', goto_next_diag, { desc = 'Diagnostics: Go to next' })
+vim.keymap.set('n', '[d', goto_prev_diag, { desc = 'Diagnostics: Go to previous' })
 
 -- [[ Oil ]]
 vim.keymap.set('n', '-', ':Oil<CR>', { desc = 'Open file directory' })
@@ -454,8 +480,6 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'FormatCB', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
-
-  nmap('<leader>vd', vim.diagnostic.open_float({ border = 'rounded' }), 'Open current diagnostic')
 
   require('navic').attach(client, bufnr)
 end
