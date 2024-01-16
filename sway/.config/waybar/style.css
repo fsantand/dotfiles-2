@@ -1,0 +1,297 @@
+@define-color background #282c34;
+@define-color text  #bbc2cf;
+@define-color accent #51afef;
+@define-color highlight #2257A0;
+
+
+@define-color text  #bbc2cf;
+@define-color accent #51afef;
+@define-color highlight #2257A0;
+
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family:JetbrainsMono Nerd Font;
+    font-size: 12px;
+}
+
+window#waybar {
+    background-color: @background;
+    color: @text;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+window#waybar.termite {
+    background-color: @background;
+}
+
+window#waybar.chromium {
+    background-color: @background;
+    border: none;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+    box-shadow: inset 0 -3px @text;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: @text;
+}
+
+#workspaces button:hover {
+    background: @background;
+}
+
+#workspaces button.focused {
+    font-weight: bold;
+    background-color: @accent;
+    color : @background;
+    box-shadow: inset 0 -3px @highlight;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#mode {
+    background-color: @background;
+    border-bottom: 3px solid #ffffff;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#mpd {
+    padding: 0 10px;
+    color: @text;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#clock {
+    color: @background;
+    font-family:pixeled;
+    font-size:8px;
+    box-shadow: inset 0 -3px @highlight;
+    background-color: @accent;
+}
+
+#battery {
+    background-color: @background;
+    color: @text;
+}
+
+#battery.charging, #battery.plugged {
+    color: @text;
+    background-color: @background;
+}
+
+@keyframes blink {
+    to {
+        background-color: #f6c177;
+        color: #191724;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: #eb6f92;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: @background;
+}
+
+#cpu {
+    background-color: @background;
+    color: @text;
+}
+
+#memory {
+    background-color: @background;
+    color: @text;
+}
+
+#disk {
+    background-color: @background;
+    color: @text;
+}
+
+#backlight {
+    background-color: @background;
+}
+
+#network {
+    background-color: @background;
+}
+
+#network.disconnected {
+    background-color: @background;
+}
+
+#pulseaudio {
+    background-color: @background;
+    color: @text;
+}
+
+#pulseaudio.muted {
+    background-color: @background;
+    color: @text;
+}
+
+#wireplumber {
+    background-color: @background;
+    color: @text;
+}
+
+#wireplumber.muted {
+    background-color: @background;
+}
+
+#custom-media {
+    background-color: @background;
+    color: @text;
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+    background-color: @background;
+}
+
+#custom-media.custom-vlc {
+    background-color: @background;
+}
+
+#temperature {
+    background-color: @background;
+}
+
+#temperature.critical {
+    background-color: @background;
+}
+
+#tray {
+    background-color: @background;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @accent;
+}
+
+#idle_inhibitor {
+    background-color: @background;
+}
+
+#idle_inhibitor.activated {
+    background-color: @background;
+    color: @text;
+}
+
+#mpd {
+    background-color: @background;
+    color: @text;
+}
+
+#mpd.disconnected {
+    background-color: @background;
+}
+
+#mpd.stopped {
+    background-color: @background;
+}
+
+#mpd.paused {
+    background-color: @background;
+}
+
+#language {
+    background: @background;
+    color: @color;
+    padding: 0 5px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state {
+    background: @background;
+    color: @text;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: @background;
+}
+
+#scratchpad {
+    background: @background;
+}
+
+#scratchpad.empty {
+	background-color: transparent;
+}

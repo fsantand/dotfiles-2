@@ -1,0 +1,1 @@
+wpctl status -n | grep $1 | awk '/vol/{print$2$3$4}' | sed 's/\*//' | sed 's/.alsa.*//' | xargs -I {} wpctl set-default {}

@@ -1,0 +1,4 @@
+killall waybar
+swaymsg output DP-1 disable
+swaymsg output HDMI-A-1 enable bg /home/fsantand/Stuff/Images/Wallpapers/mountain.png fill mode 1920x1080@74.973Hz pos 2560 0 
+sleep 2 && waybar
