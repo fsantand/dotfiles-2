@@ -25,7 +25,7 @@ gaps outer 3
 # gaps top 33
 
 # show window title bars (not officially supported with i3gaps)
-default_border pixel 2
+default_border pixel 3
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -332,6 +332,7 @@ for_window [shell="xwayland"] title_format "[XWayland] %title"
 #for_window [class=".*"] move position center
 
 bindsym $mod+d exec wofi -i --show drun --allow-images
-bindsym $mod+t exec rofi -show window -config ~/.config/rofi/rofidmenu.rasi -theme ~/.local/share/rofi/themes/rounded-nord-dark.rasi
+bindsym $mod+t exec wofi -i --show run --allow-images
 
 exec --no-startup-id waybar
+exec --no-startup-id flashfocus -t 125
