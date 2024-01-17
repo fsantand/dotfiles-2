@@ -30,7 +30,11 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   "tpope/vim-surround",
   "tpope/vim-fugitive",
-  "tpope/vim-sleuth",
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {},
+  },
   {
     "folke/trouble.nvim",
     dependencies = {
@@ -45,14 +49,21 @@ require("lazy").setup({
       -- Automatically install LSPs to stdpath for neovim
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
-
-      -- Useful status updates for LSP
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       {
         "j-hui/fidget.nvim",
-        opts = { suppress_on_instert = true, display = { render_limit = 3 } },
+        tag = "v1.2.0",
+        event = "LspAttach",
+        opts = {
+          suppress_on_insert = true,    -- Suppress new messages while in insert mode
+          ignore_done_already = false,  -- Ignore new tasks that are already complete
+          ignore_empty_message = false, -- Ignore new tasks that don't contain a message
+          poll_rate = 50,
+          display = {
+            render_limit = 3,
+            group_style = "Title",
+          },
+        },
       },
-
       -- Additional lua configuration, makes nvim stuff amazing!
       "folke/neodev.nvim",
     },
@@ -60,7 +71,6 @@ require("lazy").setup({
   {
     -- Autocompletion
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       "L3MON4D3/LuaSnip",
@@ -72,17 +82,12 @@ require("lazy").setup({
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
+
       -- Adds a number of user-friendly snippets
       "rafamadriz/friendly-snippets",
     },
   },
   { "folke/which-key.nvim",  opts = {} },
-  {
-    "stevearc/oil.nvim",
-    opts = {},
-    -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-  },
   {
     "loctvl842/monokai-pro.nvim",
     opts = {
@@ -91,6 +96,14 @@ require("lazy").setup({
     },
     config = function()
       vim.cmd.colorscheme("monokai-pro-octagon")
+    end,
+    enabled = false,
+  },
+  {
+    "rose-pine/neovim",
+    opts = {},
+    config = function()
+      vim.cmd.colorscheme("rose-pine-main")
     end,
   },
   {
@@ -101,6 +114,7 @@ require("lazy").setup({
       component_separators = "|",
       section_separators = "",
     },
+    event = "VeryLazy",
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -124,7 +138,7 @@ require("lazy").setup({
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
         cond = function()
-          return vim.fn.executable("make") == q
+          return vim.fn.executable("make") == 1
         end,
       },
     },
@@ -151,26 +165,8 @@ require("lazy").setup({
     opts = {},
     dependencies = {
       "MunifTanjim/nui.nvim",
-      {
-        "rcarriga/nvim-notify",
-        opts = {
-          top_down = false,
-          render = "compact",
-        },
-      },
     },
-  },
-  {
-    "rcarriga/nvim-notify",
-    keys = {
-      {
-        "<leader>un",
-        function()
-          require("notify").dismiss({ silent = true, p })
-        end,
-      },
-    },
-    opts = {},
+    enabled = false,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -253,10 +249,6 @@ require("lazy").setup({
     },
   },
   {
-    "f-person/git-blame.nvim",
-    opts = {},
-  },
-  {
     "kevinhwang91/nvim-bqf",
     ft = "qf",
     opts = {},
@@ -278,12 +270,12 @@ require("lazy").setup({
     opts = {
       theme = theme,
     },
-    event = "BufRead",
+    event = "LspAttach",
   },
   { "numToStr/Comment.nvim", opts = {} },
   {
     "kkoomen/vim-doge",
-    event = "BufRead",
+    event = "LspAttach",
     config = function()
       vim.cmd([[call doge#install()]])
     end,
@@ -341,12 +333,13 @@ vim.keymap.set("n", "]d", goto_next_diag, { desc = "Diagnostics: Go to next" })
 vim.keymap.set("n", "[d", goto_prev_diag, { desc = "Diagnostics: Go to previous" })
 vim.keymap.set("n", "<leader>q", ":TroubleToggle quickfix<CR>", { desc = "Diagnostics: Open QF" })
 
--- [[ Oil ]]
-vim.keymap.set("n", "-", ":Oil<CR>", { desc = "Open file directory" })
+-- [[ NETRW ]]
+vim.keymap.set("n", "-", ":Ex<CR>", { desc = "Open file directory" })
+
+vim.g.netrw_banner = 0
 
 -- [[ Telescope ]]
 local telescope_builtins = require("telescope.builtin")
-pcall(require("telescope").load_extension, "fzf")
 require("telescope").setup({
   vimgrep_arguments = {
     "rg",
@@ -361,7 +354,17 @@ require("telescope").setup({
   file_sorter = require("telescope.sorters").get_fuzzy_file,
   file_ignore_patterns = { "node_modules" },
   generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+    },
+  },
 })
+
+pcall(require("telescope").load_extension, "fzf")
 
 vim.keymap.set("n", "<leader>pf", telescope_builtins.git_files, { desc = "Find repo files" })
 vim.keymap.set("n", "<leader>pa", telescope_builtins.find_files, { desc = "Find all files" })
@@ -469,6 +472,7 @@ local servers = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
       diagnostics = { disable = { "missing-fields" } },
+      format = { enable = false },
     },
   },
   html = {},
@@ -508,9 +512,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Documentation" })
 
   nmap("<leader>fm", vim.lsp.buf.format(), "Format current buffer")
-  vim.api.nvim_buf_create_user_command(bufnr, "FormatCB", function(_)
-    vim.lsp.buf.format()
-  end, { desc = "Format current buffer with LSP" })
 
   require("navic").attach(client, bufnr)
 end
@@ -558,7 +559,6 @@ local b = null_ls.builtins
 local source = {
   b.formatting.prettier.with({ filetypes = { "html", "markdown", "css", "typescript", "javascript" } }),
   -- Lua
-  b.formatting.stylua,
   -- Spellcheck
   b.diagnostics.cspell.with({
     diagnostic_config = {
