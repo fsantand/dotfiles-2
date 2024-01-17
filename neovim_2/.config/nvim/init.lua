@@ -54,17 +54,19 @@ require("lazy").setup({
         tag = "v1.2.0",
         event = "LspAttach",
         opts = {
-          suppress_on_insert = true,    -- Suppress new messages while in insert mode
-          ignore_done_already = false,  -- Ignore new tasks that are already complete
-          ignore_empty_message = false, -- Ignore new tasks that don't contain a message
-          poll_rate = 50,
-          display = {
-            render_limit = 3,
-            group_style = "Title",
+          progress = {
+            poll_rate = 100,              -- How and when to poll for progress messages
+            suppress_on_insert = true,    -- Suppress new messages while in insert mode
+            ignore_done_already = false,  -- Ignore new tasks that are already complete
+            ignore_empty_message = false, -- Ignore new tasks that don't contain a message
+            display = {
+              render_limit = 16,
+              group_style = "Title", -- Highlight group for group name (LSP server name)
+            },
           },
         },
       },
-      -- Additional lua configuration, makes nvim stuff amazing!
+      -- -- Additional lua configuration, makes nvim stuff amazing!
       "folke/neodev.nvim",
     },
   },
@@ -109,8 +111,8 @@ require("lazy").setup({
   {
     "nvim-lualine/lualine.nvim",
     opts = {
-      icons_enabled = false,
-      theme = theme,
+      icons_enabled = true,
+      theme = 'rose-pine-main',
       component_separators = "|",
       section_separators = "",
     },
@@ -144,36 +146,12 @@ require("lazy").setup({
     },
   },
   {
-    "stevearc/dressing.nvim",
-    event = "VeryLazy",
-    opts = {},
-    init = function()
-      vim.ui.select = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.select(...)
-      end
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.input = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.input(...)
-      end
-    end,
-  },
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {},
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-    },
-    enabled = false,
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
     build = ":TSUpdate",
+    branch = "main",
   },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -268,7 +246,7 @@ require("lazy").setup({
       "nvim-tree/nvim-web-devicons",
     },
     opts = {
-      theme = theme,
+      theme = 'rose-pine',
     },
     event = "LspAttach",
   },
@@ -394,6 +372,7 @@ vim.defer_fn(function()
       "vimdoc",
       "vim",
       "bash",
+      "jsdoc",
     },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
