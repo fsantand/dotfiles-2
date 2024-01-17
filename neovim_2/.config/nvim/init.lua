@@ -12,8 +12,6 @@ vim.opt.expandtab = true
 vim.bo.softtabstop = 2
 vim.o.clipboard = "unnamedplus"
 
-local theme = "monokai-pro-octagon"
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -490,7 +488,7 @@ local on_attach = function(client, bufnr)
   nmap("<C-h>", vim.lsp.buf.signature_help, "Signature Documentation")
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Documentation" })
 
-  nmap("<leader>fm", vim.lsp.buf.format(), "Format current buffer")
+  nmap("<leader>fm", vim.lsp.buf.format, "Format current buffer")
 
   require("navic").attach(client, bufnr)
 end
