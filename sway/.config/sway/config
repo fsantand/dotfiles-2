@@ -11,6 +11,10 @@ output HDMI-A-1 {
   mode 1920x1080@74.973Hz
   pos 2560 0
 }
+ input * {
+        xkb_layout "us"
+        xkb_variant "intl"
+}
 
 # set the mod key to the meta key:
 set $mod Mod4

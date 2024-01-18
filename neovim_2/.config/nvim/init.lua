@@ -149,7 +149,7 @@ require("lazy").setup({
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
     build = ":TSUpdate",
-    branch = "main",
+    tag = "v0.9.1",
   },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
