@@ -294,12 +294,14 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move to prev half page" })
 vim.keymap.set("n", "<leader>vd", open_float, { desc = "Open diagnostic" })
 vim.keymap.set("n", "]d", goto_next_diag, { desc = "Diagnostics: Go to next" })
 vim.keymap.set("n", "[d", goto_prev_diag, { desc = "Diagnostics: Go to previous" })
-vim.keymap.set("n", "<leader>q", ":TroubleToggle quickfix<CR>", { desc = "Diagnostics: Open QF" })
+vim.keymap.set("n", "<leader>qd", ":TroubleToggle workspace_diagnostics<CR>", { desc = "Diagnostics: Open QF" })
+vim.keymap.set("n", "<leader>qa", ":TroubleToggle document_diagnostics<CR>", { desc = "Diagnostics: Open QF" })
 
 -- [[ NETRW ]]
 vim.keymap.set("n", "-", ":Ex<CR>", { desc = "Open file directory" })
-
 vim.g.netrw_banner = 0
+vim.g.netrw_list_hide = '\\(^\\|\\s\\s\\)\\zs\\.\\S\\+'
+
 
 -- [[ Telescope ]]
 local telescope_builtins = require("telescope.builtin")
@@ -335,6 +337,7 @@ vim.keymap.set("n", "<leader>pd", telescope_builtins.oldfiles, { desc = "Find ol
 vim.keymap.set("n", "<leader>ps", telescope_builtins.live_grep, { desc = "Live grep" })
 vim.keymap.set("n", "<leader>po", telescope_builtins.lsp_workspace_symbols, { desc = "Find lsp workspace symbols" })
 vim.keymap.set("n", "<leader>pt", telescope_builtins.buffers, { desc = "Find open buffer" })
+vim.keymap.set("n", "<leader>ph", telescope_builtins.help_tags, { desc = "Find help tags" })
 vim.keymap.set("n", "<leader>pws", function()
   local word = vim.fn.expand("<cword>")
   telescope_builtins.grep_string({ search = word })
