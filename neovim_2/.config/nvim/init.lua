@@ -29,11 +29,6 @@ require("lazy").setup({
   "tpope/vim-surround",
   "tpope/vim-fugitive",
   {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    opts = {},
-  },
-  {
     "folke/trouble.nvim",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
@@ -95,22 +90,14 @@ require("lazy").setup({
       inc_search = "underline",
     },
     config = function()
-      vim.cmd.colorscheme("monokai-pro-octagon")
-    end,
-    enabled = false,
-  },
-  {
-    "rose-pine/neovim",
-    opts = {},
-    config = function()
-      vim.cmd.colorscheme("rose-pine-main")
+      vim.cmd.colorscheme("monokai-pro-machine")
     end,
   },
   {
     "nvim-lualine/lualine.nvim",
     opts = {
       icons_enabled = true,
-      theme = 'rose-pine-main',
+      theme = 'monokai-pro-machine',
       component_separators = "|",
       section_separators = "",
     },
@@ -244,7 +231,7 @@ require("lazy").setup({
       "nvim-tree/nvim-web-devicons",
     },
     opts = {
-      theme = 'rose-pine',
+      theme = 'monokai-pro-machine',
     },
     event = "LspAttach",
   },
