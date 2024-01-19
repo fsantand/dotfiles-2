@@ -11,6 +11,8 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.bo.softtabstop = 2
 vim.o.clipboard = "unnamedplus"
+vim.cmd([["filetype plugin on"]])
+
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -234,11 +236,11 @@ require("lazy").setup({
       theme = 'monokai-pro-machine',
     },
     event = "LspAttach",
+    enabled = false,
   },
   { "numToStr/Comment.nvim", opts = {} },
   {
     "kkoomen/vim-doge",
-    event = "LspAttach",
     config = function()
       vim.cmd([[call doge#install()]])
     end,
