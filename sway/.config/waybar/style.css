@@ -3,11 +3,6 @@
 @define-color accent #51afef;
 @define-color highlight #2257A0;
 
-
-@define-color text  #bbc2cf;
-@define-color accent #51afef;
-@define-color highlight #2257A0;
-
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family:JetbrainsMono Nerd Font;
@@ -121,9 +116,9 @@ button:hover {
 #clock {
     color: @background;
     font-family:pixeled;
-    font-size:8px;
+    font-size:12px;
     box-shadow: inset 0 -3px @highlight;
-    background-color: @accent;
+    background-color: @accent; 
 }
 
 #battery {
