@@ -250,7 +250,10 @@ require("lazy").setup({
       "nvim-lua/plenary.nvim",
     },
   },
+  require("fsantand.plugins.null-ls"),
   require("fsantand.plugins.debugger"),
+  require("fsantand.plugins.neotest"),
+  require("fsantand.plugins.harpoon"),
 })
 
 vim.o.undofile = true
@@ -518,28 +521,6 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.config.setup({})
-
--- [[ null-ls ]]
-local null_ls = require("null-ls")
-local b = null_ls.builtins
-
-local source = {
-  b.formatting.prettier.with({ filetypes = { "html", "markdown", "css", "typescript", "javascript" } }),
-  -- Lua
-  -- Spellcheck
-  b.diagnostics.cspell.with({
-    diagnostic_config = {
-      virtual_text = false,
-    },
-  }),
-  b.code_actions.cspell,
-}
-
-null_ls.setup({
-  sources = source,
-  debounce = 500,
-  update_in_insert = false,
-})
 
 cmp.setup({
   snippet = {

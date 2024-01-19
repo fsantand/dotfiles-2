@@ -13,7 +13,9 @@ return {
   },
   config = function()
     require('mason').setup()
-    vim.cmd("MasonInstall " .. table.concat(ensure_installed, " "))
+    vim.api.nvim_create_user_command("MasonInstallAll", function ()
+      vim.cmd("MasonInstall " .. table.concat(ensure_installed, " "))
+    end, {})
 
     local null_ls = require("null-ls")
     local b = null_ls.builtins
