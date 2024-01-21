@@ -118,7 +118,7 @@ bindsym $mod+Shift+e exec ~/.config/i3/scripts/powermenu
 # lock by blurring the screen:
 # bindsym $mod+l exec ~/.config/i3/scripts/blur-lock
 exec swayidle -w \
-	timeout 1800 'swaylock -f' \
+	timeout 1800 'swaylock -f  -e -i /home/fsantand/Stuff/Images/Wallpapers/pikuniku.jpg' \
 	timeout 1805 'swaymsg "output * power off"' \
 	resume 'swaymsg "output * power on"'
 
