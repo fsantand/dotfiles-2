@@ -227,20 +227,6 @@ require("lazy").setup({
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {},
   },
-  {
-    "utilyre/barbecue.nvim",
-    name = "barbecue",
-    -- lazy = false,
-    dependencies = {
-      "SmiteshP/nvim-navic",
-      "nvim-tree/nvim-web-devicons",
-    },
-    opts = {
-      theme = 'monokai-pro-machine',
-    },
-    event = "LspAttach",
-    enabled = false,
-  },
   { "numToStr/Comment.nvim", opts = {} },
   {
     "kkoomen/vim-doge",
@@ -487,8 +473,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Documentation" })
 
   nmap("<leader>fm", vim.lsp.buf.format, "Format current buffer")
-
-  require("navic").attach(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
