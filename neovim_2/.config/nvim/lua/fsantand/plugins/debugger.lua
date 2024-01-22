@@ -139,6 +139,26 @@ return {
         envFile = "${workspaceFolder}/env/test/.${workspaceFolderBasename}.env",
       }
     }
+
+    -- Rust
+    dap.adapters.gdb = {
+      type = "executable",
+      command = "gdb",
+      args = { "-i", "dap" }
+    }
+
+    dap.configurations.rust = {
+      {
+        name = "Launch",
+        type = "gdb",
+        request = "launch",
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = "${workspaceFolder}",
+      },
+    }
+
     -- Install golang specific config
     require('dap-go').setup()
   end,
