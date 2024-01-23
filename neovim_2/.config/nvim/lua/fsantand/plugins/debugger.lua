@@ -1,6 +1,6 @@
 return {
   'mfussenegger/nvim-dap',
-  cmd = { "DapContinue", "DapToggleRepl", "DapToggleBreakpoint" },
+  event = 'LspAttach',
   dependencies = {
     'rcarriga/nvim-dap-ui',
     'williamboman/mason.nvim',

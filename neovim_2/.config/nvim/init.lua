@@ -86,24 +86,19 @@ require("lazy").setup({
   },
   { "folke/which-key.nvim",  opts = {} },
   {
+    "Mofiqul/dracula.nvim",
+    opts = {},
+    config = function()
+      vim.cmd.colorscheme("dracula")
+    end,
+  },
+  {
     "loctvl842/monokai-pro.nvim",
     opts = {
       transparent_background = false,
       inc_search = "underline",
     },
-    config = function()
-      vim.cmd.colorscheme("monokai-pro-machine")
-    end,
-  },
-  {
-    "nvim-lualine/lualine.nvim",
-    opts = {
-      icons_enabled = true,
-      theme = 'monokai-pro-machine',
-      component_separators = "|",
-      section_separators = "",
-    },
-    event = "VeryLazy",
+    enabled = false,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -230,17 +225,9 @@ require("lazy").setup({
   { "numToStr/Comment.nvim", opts = {} },
   {
     "kkoomen/vim-doge",
-    config = function()
-      vim.cmd([[call doge#install()]])
-    end,
+    build = ":call doge#install()",
   },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    dependencies = {
-      "neovim/nvim-lspconfig",
-      "nvim-lua/plenary.nvim",
-    },
-  },
+  require("fsantand.plugins.lualine"),
   require("fsantand.plugins.null-ls"),
   require("fsantand.plugins.debugger"),
   require("fsantand.plugins.neotest"),
@@ -283,6 +270,7 @@ end
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move to next half page" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move to prev half page" })
+vim.keymap.set("n", "<leader>rn", ":set relativenumber!<CR>", { silent = true, desc = "Move to prev half page" })
 
 -- [[ Diagnostics ]]
 vim.keymap.set("n", "<leader>vd", open_float, { desc = "Open diagnostic" })
@@ -292,7 +280,7 @@ vim.keymap.set("n", "<leader>qd", ":TroubleToggle workspace_diagnostics<CR>", { 
 vim.keymap.set("n", "<leader>qa", ":TroubleToggle document_diagnostics<CR>", { desc = "Diagnostics: Open QF" })
 
 -- [[ NETRW ]]
-vim.keymap.set("n", "-", ":Ex<CR>", { desc = "Open file directory" })
+vim.keymap.set("n", "-", ":Ex<CR>", { silent=true, desc = "Open file directory" })
 vim.g.netrw_banner = 0
 vim.g.netrw_list_hide = '\\(^\\|\\s\\s\\)\\zs\\.\\S\\+'
 
