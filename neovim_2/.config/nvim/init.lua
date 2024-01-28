@@ -232,7 +232,7 @@ require("lazy").setup({
   require("fsantand.plugins.debugger"),
   require("fsantand.plugins.neotest"),
   require("fsantand.plugins.harpoon"),
-  require("fsantand.plugins.rustaceannvim"),
+  -- require("fsantand.plugins.rustaceannvim"),
 })
 
 vim.o.undofile = true

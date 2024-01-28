@@ -104,7 +104,7 @@ bindsym $mod+Shift+o mode "audio"
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec wezterm
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+q kill
@@ -261,6 +261,7 @@ workspace $ws7 output $primaryScreen
 
 # bind program to workspace and focus to them on startup:
 assign [app_id="org.wezfurlong.wezterm"] $ws1
+assign [app_id="kitty"] $ws1
 assign [app_id="firefox"] $ws2
 assign [class="(?i)spotify"] $ws3
 assign [class="(?i)discord"] $ws4
@@ -272,6 +273,7 @@ assign [class="(?i)lutris"] $ws5
 
 # automatic set focus new window if it opens on another workspace than the current:
 for_window [app_id="org.wezfurlong.wezterm"] focus
+for_window [app_id="kitty"] focus
 for_window [app_id="firefox"] focus
 for_window [urgent="latest" app_id="firefox"] focus
 
