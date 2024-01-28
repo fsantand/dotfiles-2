@@ -140,23 +140,45 @@ return {
       }
     }
 
-    -- Rust
-    dap.adapters.gdb = {
-      type = "executable",
-      command = "gdb",
-      args = { "-i", "dap" }
+    dap.adapters.codelldb = {
+      type = 'server',
+      port = "${port}",
+      executable = {
+        command = require("mason-registry").get_package('codelldb'):get_install_path()
+          .. '/extension/adapter/codelldb',
+        args = {"--port", "${port}"},
+      }
     }
 
     dap.configurations.rust = {
       {
-        name = "Launch",
-        type = "gdb",
+        name = "Launch file",
+        type = "codelldb",
         request = "launch",
         program = function()
           return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
         end,
-        cwd = "${workspaceFolder}",
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
       },
+      {
+        name = "Debug selected unit test",
+        type = "codelldb",
+        request = "launch",
+        cargo = {
+          args = {
+            "test",
+            "--no-run",
+          },
+          filter = {
+            name = "libthat",
+            kind = "lib",
+          }
+        },
+        args = {"${selectedText}",},
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+      }
     }
 
     -- Install golang specific config

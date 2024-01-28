@@ -300,7 +300,7 @@ require("telescope").setup({
     "--smart-case",
   },
   pickers = {
-    lsp_workspace_symbols = { previewer = false, theme = 'dropdown' },
+    lsp_dynamic_workspace_symbols = { previewer = false, theme = 'dropdown' },
     oldfiles = { previewer = false, theme = 'dropdown'},
     git_files = { previewer = false, theme = 'dropdown'},
     find_files = { previewer = false, theme = 'dropdown'},

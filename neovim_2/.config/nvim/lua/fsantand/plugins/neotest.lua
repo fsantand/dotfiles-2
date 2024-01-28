@@ -5,6 +5,7 @@ return {
     "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter/nvim-treesitter",
     "adrigzr/neotest-mocha",
+    "rouge8/neotest-rust",
   },
   event = "LspAttach",
   config = function ()
@@ -17,6 +18,7 @@ return {
             return vim.fn.getcwd()
           end,
         }),
+        require("neotest-rust"),
       },
     })
   end
