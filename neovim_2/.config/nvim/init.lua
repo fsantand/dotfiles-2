@@ -299,6 +299,14 @@ require("telescope").setup({
     "--column",
     "--smart-case",
   },
+  pickers = {
+    lsp_workspace_symbols = { previewer = false, theme = 'dropdown' },
+    oldfiles = { previewer = false, theme = 'dropdown'},
+    git_files = { previewer = false, theme = 'dropdown'},
+    find_files = { previewer = false, theme = 'dropdown'},
+    buffers = { previewer = false, theme = 'cursor'},
+    help_tags = { theme = 'dropdown'},
+  },
   file_sorter = require("telescope.sorters").get_fuzzy_file,
   file_ignore_patterns = { "node_modules" },
   generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
@@ -318,7 +326,7 @@ vim.keymap.set("n", "<leader>pf", telescope_builtins.git_files, { desc = "Find r
 vim.keymap.set("n", "<leader>pa", telescope_builtins.find_files, { desc = "Find all files" })
 vim.keymap.set("n", "<leader>pd", telescope_builtins.oldfiles, { desc = "Find old files" })
 vim.keymap.set("n", "<leader>ps", telescope_builtins.live_grep, { desc = "Live grep" })
-vim.keymap.set("n", "<leader>po", telescope_builtins.lsp_workspace_symbols, { desc = "Find lsp workspace symbols" })
+vim.keymap.set("n", "<leader>po", telescope_builtins.lsp_dynamic_workspace_symbols, { desc = "Find lsp workspace symbols" })
 vim.keymap.set("n", "<leader>pt", telescope_builtins.buffers, { desc = "Find open buffer" })
 vim.keymap.set("n", "<leader>ph", telescope_builtins.help_tags, { desc = "Find help tags" })
 vim.keymap.set("n", "<leader>pws", function()
