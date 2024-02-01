@@ -232,6 +232,8 @@ require("lazy").setup({
   require("fsantand.plugins.debugger"),
   require("fsantand.plugins.neotest"),
   require("fsantand.plugins.harpoon"),
+  require("fsantand.plugins.conform"),
+  require("fsantand.plugins.linter"),
   -- require("fsantand.plugins.rustaceannvim"),
 })
 
@@ -468,8 +470,6 @@ local on_attach = function(client, bufnr)
   nmap("K", vim.lsp.buf.hover, "Hover Documentation")
   nmap("<C-h>", vim.lsp.buf.signature_help, "Signature Documentation")
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Documentation" })
-
-  nmap("<leader>fm", vim.lsp.buf.format, "Format current buffer")
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

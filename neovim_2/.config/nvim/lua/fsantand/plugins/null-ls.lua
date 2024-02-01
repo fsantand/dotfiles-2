@@ -1,5 +1,5 @@
 return {
-  "jose-elias-alvarez/null-ls.nvim",
+  "nvimtools/none-ls.nvim",
   event = "LspAttach",
   dependencies = {
     "neovim/nvim-lspconfig",
@@ -11,14 +11,12 @@ return {
     local b = null_ls.builtins
 
     local sources = {
-      b.formatting.prettier.with({ filetypes = { "html", "markdown", "css", "typescript", "javascript" } }),
       -- Spellcheck
       b.code_actions.cspell,
     }
 
     null_ls.setup({
       sources = sources,
-      debug = true,
     })
   end,
 }
