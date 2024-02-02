@@ -1,7 +1,7 @@
 export ZSH_THEME="lambda-gitster/lambda-gitster"
 export XTERM="xterm-256color"
 export ZSH="$HOME/.oh-my-zsh"
-plugins=(git autojump)
+plugins=(git autojump fzf-tab)
 source $ZSH/oh-my-zsh.sh
 
 export EDITOR='nvim'
