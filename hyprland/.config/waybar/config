@@ -1,0 +1,51 @@
+{
+    "margin": "10 20 0 20",
+    "modules-left": ["clock", "custom/pacman" ],
+    "modules-center": ["hyprland/workspaces", "custom/weather"],
+    "modules-right": ["pulseaudio", "tray"],
+
+
+    //***************************
+    //*  Modules configuration  *
+    //***************************
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+          "urgent": "",
+        }
+    },
+
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%a, %d %b, %I:%M %p}"
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "reverse-scrolling": 1,
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "婢 {format_source}",
+        "format-source": "{volume}% ",
+        "format-sink": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": "",
+        },
+        "on-click": "pavucontrol",
+        "min-length": 13,
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 0
+    },
+}

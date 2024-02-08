@@ -91,6 +91,7 @@ require("lazy").setup({
     config = function()
       vim.cmd.colorscheme("dracula")
     end,
+    priority = 5000,
   },
   {
     "loctvl842/monokai-pro.nvim",
