@@ -235,7 +235,23 @@ require("lazy").setup({
   require("fsantand.plugins.harpoon"),
   require("fsantand.plugins.conform"),
   require("fsantand.plugins.linter"),
+  require("fsantand.plugins.alpha"),
   -- require("fsantand.plugins.rustaceannvim"),
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    }
+  }
 })
 
 vim.o.undofile = true
@@ -332,6 +348,7 @@ vim.keymap.set("n", "<leader>ps", telescope_builtins.live_grep, { desc = "Live g
 vim.keymap.set("n", "<leader>po", telescope_builtins.lsp_dynamic_workspace_symbols, { desc = "Find lsp workspace symbols" })
 vim.keymap.set("n", "<leader>pt", telescope_builtins.buffers, { desc = "Find open buffer" })
 vim.keymap.set("n", "<leader>ph", telescope_builtins.help_tags, { desc = "Find help tags" })
+vim.keymap.set("n", "<leader>pb", telescope_builtins.git_branches, { desc = "Switch branches" })
 vim.keymap.set("n", "<leader>pws", function()
   local word = vim.fn.expand("<cword>")
   telescope_builtins.grep_string({ search = word })
