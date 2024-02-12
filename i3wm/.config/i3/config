@@ -89,7 +89,7 @@ bindsym $mod+Shift+o mode "audio"
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec wezterm
 
 # kill focused window
 bindsym $mod+q kill
@@ -300,7 +300,7 @@ exec --no-startup-id sleep 1 && feh --bg-fill /home/fsantand/Stuff/Images/Wallpa
 exec --no-startup-id /usr/bin/dunst
 
 # Autostart apps as you like
-exec --no-startup-id sleep 2 && kitty
+exec --no-startup-id sleep 2 && wezterm
 exec --no-startup-id sleep 3 && vesktop
 exec --no-startup-id sleep 2 && spotify
 exec --no-startup-id sleep 3 && firefox
