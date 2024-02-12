@@ -311,7 +311,7 @@ require("telescope").setup({
     help_tags = { theme = 'dropdown'},
   },
   file_sorter = require("telescope.sorters").get_fuzzy_file,
-  file_ignore_patterns = { "node_modules" },
+  file_ignore_patterns = { "node_modules", "package-lock.json" },
   generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
   extensions = {
     fzf = {
