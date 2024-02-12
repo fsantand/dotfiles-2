@@ -86,10 +86,10 @@ require("lazy").setup({
   },
   { "folke/which-key.nvim",  opts = {} },
   {
-    "Mofiqul/dracula.nvim",
+    "rebelot/kanagawa.nvim",
     opts = {},
     config = function()
-      vim.cmd.colorscheme("dracula")
+      vim.cmd.colorscheme("kanagawa")
     end,
     priority = 5000,
   },
@@ -237,21 +237,6 @@ require("lazy").setup({
   require("fsantand.plugins.linter"),
   require("fsantand.plugins.alpha"),
   -- require("fsantand.plugins.rustaceannvim"),
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-      -- add any options here
-    },
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
-    }
-  }
 })
 
 vim.o.undofile = true
@@ -327,7 +312,7 @@ require("telescope").setup({
     help_tags = { theme = 'dropdown'},
   },
   file_sorter = require("telescope.sorters").get_fuzzy_file,
-  file_ignore_patterns = { "node_modules", "package-lock.json" },
+  file_ignore_patterns = { "node_modules", "package%-lock.json" },
   generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
   extensions = {
     fzf = {
