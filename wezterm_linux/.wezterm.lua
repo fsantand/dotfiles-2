@@ -2,13 +2,13 @@ local wezterm = require "wezterm"
 
 return {
   font = wezterm.font_with_fallback {
-    'Monocraft',
+    'Monoid Nerd Font',
     'JetBrains Mono',
     'JetBrainsMono',
   },
   font_size = 12,
   freetype_interpreter_version = 35,
-  color_scheme = 'Dracula',
+  color_scheme = 'Kanagawa (Gogh)',
   keys = {
     {
       key = "k",
