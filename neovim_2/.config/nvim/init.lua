@@ -40,8 +40,7 @@ require("lazy").setup({
   {
     -- LSP Configuration & Plugins
     "neovim/nvim-lspconfig",
-    dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
+    dependencies = { -- Automatically install LSPs to stdpath for neovim
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
       {
@@ -471,8 +470,7 @@ local on_attach = function(client, bufnr)
   nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
   nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-  nmap("<C-h>", vim.lsp.buf.signature_help, "Signature Documentation")
-  vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Documentation" })
+  vim.keymap.set("i", "<C-S-h>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Documentation" })
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

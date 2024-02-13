@@ -201,17 +201,17 @@ bindsym XF86AudioPlay exec "playerctl -p $PLAYER_PRIORITY play-pause"
 bindsym XF86AudioNext exec "playerctl -p $PLAYER_PRIORITY next"
 bindsym XF86AudioPrev exec "playerctl -p $PLAYER_PRIORITY previous"
 
-# Redirect sound to headphones
-bindsym $mod+p exec /usr/local/bin/switch-audio-port
-
 ## App shortcuts
 bindsym $mod+w exec firefox
 bindsym $mod+n exec /usr/bin/thunar
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui --clipboard
 bindsym $mod+s exec --no-startup-id flameshot gui --path ~/Stuff/Images
 
-# Power Profiles menu switcher (rofi)
-bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
+bindsym $mod+Shift+p move scratchpad
+bindsym $mod+p scratchpad show
+
+bindsym $mod+y exec passmenu
+
 
 ##########################################
 # configuration for workspace behaviour: #
@@ -246,6 +246,7 @@ assign [class="(?i)kitty"] $ws1
 assign [class="(?i)chrome"] $ws2
 assign [class="(?i)firefox"] $ws2
 assign [class="(?i)spotify"] $ws3
+assign [class="(?i)wezterm" title="^spt"] $ws3
 assign [class="(?i)discord"] $ws4
 assign [class="(?i)telegram"] $ws4
 assign [class="(?i)vesktop"] $ws4
@@ -302,7 +303,7 @@ exec --no-startup-id /usr/bin/dunst
 # Autostart apps as you like
 exec --no-startup-id sleep 2 && wezterm
 exec --no-startup-id sleep 3 && vesktop
-exec --no-startup-id sleep 2 && spotify
+exec --no-startup-id sleep 2 && wezterm start -- spt
 exec --no-startup-id sleep 3 && firefox
 exec --no-startup-id sleep 5 && steam-runtime
 
