@@ -235,6 +235,7 @@ require("lazy").setup({
   require("fsantand.plugins.conform"),
   require("fsantand.plugins.linter"),
   require("fsantand.plugins.alpha"),
+  require("fsantand.plugins.presence"),
   -- require("fsantand.plugins.rustaceannvim"),
 })
 
