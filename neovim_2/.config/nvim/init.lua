@@ -448,6 +448,7 @@ local servers = {
     cmd = { "volta", "run", "typescript-language-server", "--stdio" },
   },
   rust_analyzer = {},
+  bashls = {},
 }
 
 require("neodev").setup()
