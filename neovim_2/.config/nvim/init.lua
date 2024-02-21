@@ -11,8 +11,8 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.bo.softtabstop = 2
 vim.o.clipboard = "unnamedplus"
+vim.o.completeopt = 'menuone,noselect'
 vim.cmd([["filetype plugin on"]])
-
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -524,8 +524,14 @@ cmp.setup({
     ["<C-p>"] = cmp.mapping.select_prev_item(),
     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<CR>"] = cmp.mapping.confirm(),
+    ["<C-y>"] = cmp.mapping.complete({
+      select = true,
+      behaviour = cmp.ConfirmBehavior.Replace,
+    }),
+    ["<C-Space>"] = cmp.mapping.confirm({
+      behaviour = cmp.ConfirmBehavior.Replace,
+      select = true
+    }),
   }),
   sources = {
     { name = "nvim_lsp_signature_help" },
