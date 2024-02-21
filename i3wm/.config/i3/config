@@ -8,9 +8,8 @@ set $secondaryScreen HDMI-A-0
 workspace_layout default
 
 # Set inner/outer gaps
-gaps inner 5
-gaps outer 3
-# gaps top 33
+gaps inner 2
+gaps outer 1
 
 # show window title bars (not officially supported with i3gaps)
 default_border pixel 1
@@ -95,7 +94,7 @@ bindsym $mod+Return exec wezterm
 bindsym $mod+q kill
 
 # exit-menu
-bindsym $mod+Shift+e exec ~/.config/i3/scripts/powermenu
+bindsym $mod+Shift+e exec ~/.config/rofi/scripts/powermenu_t2
 
 # Lock the system
 # lock with a picture:
@@ -287,7 +286,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
 # exec --no-startup-id betterlockscreen -u /home/fsantand/Stuff/Images/Wallpapers/Tsunami_by_hokusai_19th_century.jpg
-exec --no-startup-id sleep 1 && feh --bg-fill /home/fsantand/Stuff/Images/Wallpapers/mountain.png
+exec --no-startup-id sleep 1 && feh --bg-fill /home/fsantand/Stuff/Images/Wallpapers/tsunami.jpg
 
 # set powersavings for display:
 # exec --no-startup-id xset s 480 dpms 600 600 600
@@ -303,7 +302,7 @@ exec --no-startup-id /usr/bin/dunst
 # Autostart apps as you like
 exec --no-startup-id sleep 2 && wezterm
 exec --no-startup-id sleep 3 && vesktop
-exec --no-startup-id sleep 2 && wezterm start -- spt
+exec --no-startup-id sleep 2 && wezterm start -- spt; move container to workspace $ws3
 exec --no-startup-id sleep 3 && firefox
 exec --no-startup-id sleep 5 && steam-runtime
 
@@ -346,7 +345,8 @@ for_window [class="steam" title="^Steam$"] floating disable
 # set position of floating window
 #for_window [class=".*"] move position center
 
-bindsym $mod+d exec rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi -theme ~/.local/share/rofi/themes/spotlight-dark.rasi
+#bindsym $mod+d exec rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi -theme ~/.local/share/rofi/themes/spotlight-dark.rasi
+bindsym $mod+d exec ~/.config/rofi/launchers/type-3/launcher.sh
 bindsym $mod+t exec rofi -show window -config ~/.config/rofi/rofidmenu.rasi -theme ~/.local/share/rofi/themes/rounded-nord-dark.rasi
 
 exec --no-startup-id ~/.config/i3/scripts/polybar.sh

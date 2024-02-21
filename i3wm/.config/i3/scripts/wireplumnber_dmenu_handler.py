@@ -62,7 +62,7 @@ def parse_wpctl_status():
 
 def pipe_into_dmenu(output):
     output = subprocess.run(
-        f"echo '{output}' | rofi -dmenu -markup-rows",
+        f"echo '{output}' | rofi -dmenu -markup-rows -theme ~/.config/rofi/launchers/type-1/style-4.rasi -p Audio",
         shell=True,
         encoding="utf-8",
         stdout=subprocess.PIPE,
