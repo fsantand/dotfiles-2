@@ -14,26 +14,6 @@ vim.o.clipboard = "unnamedplus"
 vim.o.completeopt = 'menuone,noselect'
 vim.cmd([["filetype plugin on"]])
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
-
-require("lazy").setup({
-  spec = {
-    { import = "fsantand.plugins" },
-    require("fsantand.plugins.lsp"),
-  }
-})
-
 vim.o.undofile = true
 vim.o.breakindent = true
 vim.wo.signcolumn = "yes"
@@ -81,3 +61,24 @@ end
 vim.keymap.set("n", "<leader>vd", open_float, { desc = "Open diagnostic" })
 vim.keymap.set("n", "]d", goto_next_diag, { desc = "Diagnostics: Go to next" })
 vim.keymap.set("n", "[d", goto_prev_diag, { desc = "Diagnostics: Go to previous" })
+
+-- [[ Plugins ]]
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  spec = {
+    { import = "fsantand.plugins" },
+    require("fsantand.plugins.lsp"),
+  }
+})
