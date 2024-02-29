@@ -30,7 +30,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     { import = "fsantand.plugins" },
-    { import = "fsantand.plugins.lang" },
     require("fsantand.plugins.lsp"),
   }
 })

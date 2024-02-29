@@ -42,6 +42,7 @@ return {
         "gdscript",
       }
 
+      require("mason").setup()
       require("neodev").setup()
 
       for _, server in ipairs(servers) do
@@ -51,6 +52,7 @@ return {
         })
       end
 
+      -- lua_ls
       lspconfig.lua_ls.setup({
         on_attach = mappings.on_attach,
         capabilities = capabilities,
@@ -60,6 +62,13 @@ return {
           diagnostics = { disable = { "missing-fields" } },
           format = { enable = false },
         },
+      })
+
+      -- Javascript n Typescript
+      lspconfig.tsserver.setup({
+        on_attach = mappings.on_attach,
+        capabilities = capabilities,
+        cmd = { "volta", "run", "typescript-language-server", "--stdio" },
       })
     end
   },

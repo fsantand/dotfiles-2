@@ -8,7 +8,6 @@ return {
       },
     },
     build = ":TSUpdate",
-    event = "VeryLazy",
     opts = {
       -- Add languages to be installed here that you want installed for treesitter
       ensure_installed = {
