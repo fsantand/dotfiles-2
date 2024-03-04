@@ -9,7 +9,7 @@ return {
   font_size = 12,
   harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
   freetype_interpreter_version = 35,
-  color_scheme = 'Kanagawa (Gogh)',
+  color_scheme = 'Monokai Pro (Gogh)',
   keys = {
     {
       key = "k",
