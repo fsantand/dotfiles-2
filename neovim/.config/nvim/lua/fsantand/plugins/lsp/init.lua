@@ -29,7 +29,7 @@ return {
 
       local mappings = require("fsantand.plugins.lsp.keymaps")
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+      capabilities = vim.tbl_deep_extend('force', capabilities, require("cmp_nvim_lsp").default_capabilities())
 
       local servers = {
         "html",
@@ -57,10 +57,23 @@ return {
         on_attach = mappings.on_attach,
         capabilities = capabilities,
         Lua = {
-          workspace = { checkThirdParty = false },
-          telemetry = { enable = false },
-          diagnostics = { disable = { "missing-fields" } },
-          format = { enable = false },
+          runtime = { version = 'LuaJIT' },
+          workspace = {
+            checkThirdParty = false,
+            -- Tells lua_ls where to find all the Lua files that you have loaded
+            -- for your neovim configuration.
+            library = {
+              '${3rd}/luv/library',
+              unpack(vim.api.nvim_get_runtime_file('', true)),
+            },
+            -- If lua_ls is really slow on your computer, you can try this instead:
+            -- library = { vim.env.VIMRUNTIME },
+          },
+          completion = {
+            callSnippet = 'Replace',
+          },
+          -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+          -- diagnostics = { disable = { 'missing-fields' } },
         },
       })
 
