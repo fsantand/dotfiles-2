@@ -8,6 +8,7 @@ return {
       vim.cmd.colorscheme("kanagawa")
     end,
     priority = 5000,
+    enabled = false,
   },
   {
     "loctvl842/monokai-pro.nvim",
@@ -15,6 +16,9 @@ return {
       transparent_background = false,
       inc_search = "underline",
     },
-    enabled = false,
+    priority = 5000,
+    config = function()
+      vim.cmd.colorscheme("monokai-pro")
+    end,
   },
 }
