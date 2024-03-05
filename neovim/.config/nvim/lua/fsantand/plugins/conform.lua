@@ -1,5 +1,6 @@
 return {
   "stevearc/conform.nvim",
+  event = "LspAttach",
   config = function ()
     local conform = require("conform")
     conform.setup({

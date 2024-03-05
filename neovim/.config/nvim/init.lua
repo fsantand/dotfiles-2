@@ -80,5 +80,16 @@ require("lazy").setup({
   spec = {
     { import = "fsantand.plugins" },
     require("fsantand.plugins.lsp"),
-  }
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      }
+    }
+  },
 })

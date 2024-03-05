@@ -1,6 +1,6 @@
 return {
   "andweeb/presence.nvim",
-  lazy = false,
+  event = "VeryLazy",
   config = function ()
     require('presence').setup({
       auto_update = true,
