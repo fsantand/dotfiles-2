@@ -3,24 +3,7 @@ return {
     -- LSP Configuration & Plugins
     "neovim/nvim-lspconfig",
     dependencies = { -- Automatically install LSPs to stdpath for neovim
-      { "williamboman/mason.nvim" },
-      {
-        "j-hui/fidget.nvim",
-        tag = "v1.2.0",
-        event = "LspAttach",
-        opts = {
-          progress = {
-            poll_rate = 100,              -- How and when to poll for progress messages
-            suppress_on_insert = true,    -- Suppress new messages while in insert mode
-            ignore_done_already = false,  -- Ignore new tasks that are already complete
-            ignore_empty_message = false, -- Ignore new tasks that don't contain a message
-            display = {
-              render_limit = 16,
-              group_style = "Title", -- Highlight group for group name (LSP server name)
-            },
-          },
-        },
-      },
+      { "williamboman/mason.nvim", opts={}, lazy=false },
       -- -- Additional lua configuration, makes nvim stuff amazing!
       "folke/neodev.nvim",
     },
@@ -42,7 +25,6 @@ return {
         "gdscript",
       }
 
-      require("mason").setup()
       require("neodev").setup()
 
       for _, server in ipairs(servers) do
@@ -84,5 +66,22 @@ return {
         cmd = { "volta", "run", "typescript-language-server", "--stdio" },
       })
     end
+  },
+  {
+    "j-hui/fidget.nvim",
+    tag = "v1.2.0",
+    event = "LspAttach",
+    opts = {
+      progress = {
+        poll_rate = 100,              -- How and when to poll for progress messages
+        suppress_on_insert = true,    -- Suppress new messages while in insert mode
+        ignore_done_already = false,  -- Ignore new tasks that are already complete
+        ignore_empty_message = false, -- Ignore new tasks that don't contain a message
+        display = {
+          render_limit = 16,
+          group_style = "Title", -- Highlight group for group name (LSP server name)
+        },
+      },
+    },
   },
 }
