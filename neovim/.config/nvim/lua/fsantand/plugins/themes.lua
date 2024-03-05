@@ -1,24 +1,20 @@
 return {
   {
     "rebelot/kanagawa.nvim",
+    lazy = true,
     opts = {
       inc_search = "underline",
     },
-    config = function()
-      vim.cmd.colorscheme("kanagawa")
-    end,
     priority = 5000,
-    enabled = false,
   },
   {
     "loctvl842/monokai-pro.nvim",
+    lazy = true,
     opts = {
       transparent_background = false,
       inc_search = "underline",
+      filter = "machine",
     },
     priority = 5000,
-    config = function()
-      vim.cmd.colorscheme("monokai-pro")
-    end,
   },
 }

@@ -119,6 +119,7 @@ return {
         { "<leader>pt", telescope_builtins.buffers, { desc = "Find open buffer" }},
         { "<leader>ph", telescope_builtins.help_tags, { desc = "Find help tags" }},
         { "<leader>pb", telescope_builtins.git_branches, { desc = "Switch branches" }},
+        { "<leader>pT", ":Telescope colorscheme enable_preview=true <CR>", { desc = "Switch colorschemes" }},
         { "<leader>pws", find_current_word, { desc = "Find current word in files" }},
       }
     end,

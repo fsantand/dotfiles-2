@@ -81,6 +81,7 @@ require("lazy").setup({
     { import = "fsantand.plugins" },
     require("fsantand.plugins.lsp"),
   },
+  install = { colorscheme = {'monokai-pro', 'kanagawa'}},
   performance = {
     rtp = {
       disabled_plugins = {
@@ -93,3 +94,5 @@ require("lazy").setup({
     }
   },
 })
+
+require("monokai-pro").load()
