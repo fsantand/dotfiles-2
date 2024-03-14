@@ -11,8 +11,11 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.bo.softtabstop = 2
 vim.o.clipboard = "unnamedplus"
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = 'menu,menuone,noinsert'
 vim.cmd([["filetype plugin on"]])
+
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 vim.o.undofile = true
 vim.o.breakindent = true
@@ -21,9 +24,19 @@ vim.wo.signcolumn = "yes"
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
-vim.o.hlsearch = false
 vim.o.ignorecase = true
 vim.o.smartcase = true
+
+vim.opt.showmode = false
+vim.opt.cursorline = true
+vim.opt.scrolloff = 10
+vim.opt.hlsearch = true
+
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {

@@ -84,11 +84,11 @@ return {
           "--smart-case",
         },
         pickers = {
-          lsp_dynamic_workspace_symbols = { previewer = false, theme = 'dropdown' },
+          lsp_dynamic_workspace_symbols = { theme = 'dropdown' },
           oldfiles = { previewer = false, theme = 'dropdown'},
           git_files = { previewer = false, theme = 'dropdown'},
           find_files = { previewer = false, theme = 'dropdown'},
-          buffers = { previewer = false, theme = 'cursor'},
+          buffers = { previewer = false, theme = 'dropdown'},
           help_tags = { theme = 'dropdown'},
         },
         file_sorter = require("telescope.sorters").get_fuzzy_file,

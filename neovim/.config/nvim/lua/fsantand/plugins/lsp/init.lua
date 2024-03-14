@@ -63,6 +63,7 @@ return {
       lspconfig.tsserver.setup({
         on_attach = mappings.on_attach,
         capabilities = capabilities,
+        root_dir = require('lspconfig.util').root_pattern('.git'),
         cmd = { "volta", "run", "typescript-language-server", "--stdio" },
       })
     end
