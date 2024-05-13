@@ -6,6 +6,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "adrigzr/neotest-mocha",
     "rouge8/neotest-rust",
+    'nvim-neotest/nvim-nio',
   },
   event = "LspAttach",
   config = function ()

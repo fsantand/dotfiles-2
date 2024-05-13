@@ -4,7 +4,7 @@ return {
   opts = {
     options = {
       icons_enabled = true,
-      theme = 'monokai-pro',
+      theme = 'tokyonight',
     }
   }
 }

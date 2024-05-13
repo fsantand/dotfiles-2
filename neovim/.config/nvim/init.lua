@@ -38,6 +38,8 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
@@ -54,9 +56,9 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move to prev half page" })
 vim.keymap.set("n", "<leader>rn", ":set relativenumber!<CR>", { silent = true, desc = "Move to prev half page" })
 
 -- [[ NETRW ]]
-vim.keymap.set("n", "-", ":Ex<CR>", { silent=true, desc = "Open file directory" })
-vim.g.netrw_banner = 0
-vim.g.netrw_list_hide = '\\(^\\|\\s\\s\\)\\zs\\.\\S\\+'
+-- vim.keymap.set("n", "-", ":Ex<CR>", { silent=true, desc = "Open file directory" })
+-- vim.g.netrw_banner = 0
+-- vim.g.netrw_list_hide = '\\(^\\|\\s\\s\\)\\zs\\.\\S\\+'
 
 -- [[ Diagnostics ]]
 local open_float = function()
@@ -94,10 +96,11 @@ require("lazy").setup({
     { import = "fsantand.plugins" },
     require("fsantand.plugins.lsp"),
   },
-  install = { colorscheme = {'monokai-pro', 'kanagawa'}},
+  install = { colorscheme = {'monokai-pro', 'kanagawa', 'tokyo-night' }},
   performance = {
     rtp = {
       disabled_plugins = {
+        "netrw",
         "gzip",
         "tarPlugin",
         "tohtml",
@@ -107,5 +110,3 @@ require("lazy").setup({
     }
   },
 })
-
-require("monokai-pro").load()
