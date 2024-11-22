@@ -60,10 +60,18 @@ return {
       })
 
       -- Javascript n Typescript
-      lspconfig.tsserver.setup({
+      --
+      lspconfig.denols.setup({
         on_attach = mappings.on_attach,
         capabilities = capabilities,
-        root_dir = require('lspconfig.util').root_pattern('.git'),
+        root_dir = require('lspconfig.util').root_pattern("deno.json", "deno.jsonc"),
+      })
+
+      lspconfig.ts_ls.setup({
+        on_attach = mappings.on_attach,
+        capabilities = capabilities,
+        root_dir = require('lspconfig.util').root_pattern("package.json"),
+        single_file_support = false,
         cmd = { "volta", "run", "typescript-language-server", "--stdio" },
       })
     end

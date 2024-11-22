@@ -6,7 +6,7 @@ return {
         "Saecki/crates.nvim",
         event = { "BufRead Cargo.toml" },
         opts = {
-          src = {
+          completion = {
             cmp = { enabled = true },
           },
         },
@@ -47,21 +47,6 @@ return {
         opts = {}
       },
     },
-    keys = function ()
-      return {
-        { "<leader>ca", ":RustLsp codeAction<CR>", "Rust: [C]ode [a]ctions"},
-        { "gd", require("telescope.builtin").lsp_definitions, "Rust: [G]oto [D]efinition" },
-        { "gr", require("telescope.builtin").lsp_references, "Rust: [G]oto [R]eferences" },
-        { "gI", ":RustLsp hover actions<CR>", "Rust: [G]oto [I]mplementation" },
-        { "K", ":RustLsp hover actions<CR>", "Rust: Hover documentation" },
-        { "ge", ":RustLsp explainError<CR>", "Rust: [G]oto [E]rror explanation" },
-        { "<leader>vd", ":RustLsp renderDiagnostic<CR>", "Rust: [V]iew [D]iagnostic" },
-        { "<leader>D", require("telescope.builtin").lsp_type_definitions, "Rust: Type [D]efinition" },
-        { "<leader>ds", require("telescope.builtin").lsp_document_symbols, "Rust: [D]ocument [S]ymbols" },
-        { "<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Rust: [W]orkspace [S]ymbols" },
-        { "<F5>", ":RustLsp debuggables<CR>" , "Rust: Debug" },
-      }
-    end,
     config = function()
       vim.g.rustaceanvim = {
         inlay_hints = {
@@ -78,6 +63,25 @@ return {
           end
         }
       }
+
+      local nmap = function(keys, func, desc)
+        if desc then
+          desc = "LSP: " .. desc
+        end
+        vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+      end
+
+      nmap("<leader>ca", ":RustLsp codeAction<CR>", "Rust: [C]ode [a]ctions")
+      nmap("gd", require("telescope.builtin").lsp_definitions, "Rust: [G]oto [D]efinition")
+      nmap("gr", require("telescope.builtin").lsp_references, "Rust: [G]oto [R]eferences")
+      nmap("gI", ":RustLsp hover actions<CR>", "Rust: [G]oto [I]mplementation")
+      nmap("K", ":RustLsp hover actions<CR>", "Rust: Hover documentation")
+      nmap("ge", ":RustLsp explainError<CR>", "Rust: [G]oto [E]rror explanation")
+      nmap("<leader>vd", ":RustLsp renderDiagnostic<CR>", "Rust: [V]iew [D]iagnostic")
+      nmap("<leader>D", require("telescope.builtin").lsp_type_definitions, "Rust: Type [D]efinition")
+      nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "Rust: [D]ocument [S]ymbols")
+      nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Rust: [W]orkspace [S]ymbols")
+      nmap("<F5>", ":RustLsp debuggables<CR>" , "Rust: Debug")
     end
   },
   {

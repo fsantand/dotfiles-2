@@ -1,4 +1,14 @@
-# BEGIN_KITTY_THEME
-# Monokai Pro (Filter Octagon)
-include current-theme.conf
-# END_KITTY_THEME
+include Monokai Pro.conf
+font_size 14.0
+font_family Hack Nerd Font
+
+map kitty_mod+enter toggle_fullscreen 
+
+hide_window_decorations yes 
+macos_hide_titlebar yes
+macos_traditional_fullscreen yes
+
+window_padding_width 4
+window_padding_height 4
+
+shell fish
